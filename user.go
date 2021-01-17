@@ -12,22 +12,10 @@ func NewUserAPI(group *echo.Group) {
 
 func getAllUsersHandler() func(echo.Context) error {
 	return func(ctx echo.Context) error {
-		u := Users{
-			User{
-				Firstname: "f1",
-				Lastname:  "l1",
-				Title:     "Mr.",
-			},
-			User{
-				Firstname: "f2",
-				Lastname:  "l2",
-				Title:     "Miss.",
-			},
-		}
+		repository := NewUserRepository()
+
+		u, _ := repository.GetAll()
+
 		return ctx.JSON(http.StatusOK, u)
 	}
-}
-
-func getUser(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, "Hello world")
 }
