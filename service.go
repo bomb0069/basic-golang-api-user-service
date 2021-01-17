@@ -8,7 +8,8 @@ import (
 
 func StartServer() {
 	e := echo.New()
-	e.GET("/api/v1/users", getUser)
+	route := e.Group("/api/v1")
+	route.GET("/users", getUser)
 	e.Logger.Fatal(e.Start(":8080"))
 }
 
