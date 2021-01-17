@@ -12,7 +12,19 @@ func NewUserAPI(group *echo.Group) {
 
 func getAllUsersHandler() func(echo.Context) error {
 	return func(ctx echo.Context) error {
-		return ctx.JSON(http.StatusOK, "Hello world")
+		u := Users{
+			User{
+				Firstname: "f1",
+				Lastname:  "l1",
+				Title:     "Mr.",
+			},
+			User{
+				Firstname: "f2",
+				Lastname:  "l2",
+				Title:     "Miss.",
+			},
+		}
+		return ctx.JSON(http.StatusOK, u)
 	}
 }
 
