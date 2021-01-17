@@ -3,7 +3,7 @@ package user
 type Users []User
 
 type User struct {
-	Firstname string
-	Lastname  string
-	Title     string
+	Firstname string `json:"first_name"`
+	Lastname  string `json:"last_name"`
+	Title     string `json:"title"`
 }
