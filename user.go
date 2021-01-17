@@ -6,13 +6,13 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func NewUserAPI(group *echo.Group) {
-	group.GET("/users", getAllUsersHandler())
+func NewUserAPI(group *echo.Group, resource *Resource) {
+	group.GET("/users", getAllUsersHandler(resource))
 }
 
-func getAllUsersHandler() func(echo.Context) error {
+func getAllUsersHandler(resource *Resource) func(echo.Context) error {
 	return func(ctx echo.Context) error {
-		repository := NewUserRepository()
+		repository := NewUserRepository(resource)
 
 		u, _ := repository.GetAll()
 
